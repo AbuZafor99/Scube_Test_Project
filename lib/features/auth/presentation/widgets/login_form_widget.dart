@@ -46,7 +46,7 @@ class LoginFormWidget extends StatelessWidget {
             controller: controller.usernameController,
             validator: controller.validateUsername,
             decoration: InputDecoration(
-              hintText: AppTexts.username,
+              hintText: 'Email',
               filled: true,
               fillColor: Colors.white,
               contentPadding: const EdgeInsets.symmetric(

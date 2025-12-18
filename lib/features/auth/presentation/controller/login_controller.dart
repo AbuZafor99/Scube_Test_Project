@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scube_task_app/core/common/constants/app_texts.dart';
+import 'package:scube_task_app/features/home/presentation/screens/home_screen.dart';
 
 class LoginController extends GetxController {
   final usernameController = TextEditingController();
@@ -41,6 +42,9 @@ class LoginController extends GetxController {
         AppTexts.loginSuccess,
         snackPosition: SnackPosition.BOTTOM,
       );
+      
+      // Navigate to home screen
+      Get.offAll(() => const HomeScreen());
     }
   }
 
@@ -66,6 +70,16 @@ class LoginController extends GetxController {
     if (value == null || value.isEmpty) {
       return AppTexts.pleaseEnterUsername;
     }
+    
+    // Email validation regex
+    final emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+    
+    if (!emailRegex.hasMatch(value)) {
+      return 'Please enter a valid email address';
+    }
+    
     return null;
   }
 
