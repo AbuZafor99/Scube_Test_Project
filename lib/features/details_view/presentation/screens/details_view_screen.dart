@@ -8,6 +8,8 @@ import 'package:scube_task_app/features/details_view/presentation/widgets/date_s
 import 'package:scube_task_app/features/details_view/presentation/widgets/energy_chart_card_widget.dart';
 import 'package:scube_task_app/features/details_view/presentation/widgets/view_toggle_widget.dart';
 
+import '../widgets/data_cost_info_widget.dart';
+
 class DetailsViewScreen extends StatelessWidget {
   const DetailsViewScreen({super.key});
 
@@ -69,34 +71,49 @@ class DetailsViewScreen extends StatelessWidget {
             ViewToggleWidget(controller: controller),
             
             // Circular gauge
-            Obx(() => CircularGaugeWidget(value: controller.gaugeValue.value)),
+            Obx(() => CircularGaugeWidget(
+              value: controller.gaugeValueStr.value,
+              unit: controller.gaugeUnit.value,
+            )),
             
             const SizedBox(height: 20),
             
-            // Date selection (Today Data / Custom Date Data)
-            DateSelectionWidget(controller: controller),
-            
-            const SizedBox(height: 16),
-            
-            // Energy chart(s)
+            // Conditional Rendering based on View Type
             Obx(() {
-              if (controller.isTodayData.value) {
-                // Today Data mode: Show single energy chart
-                return EnergyChartCardWidget(
-                  energyValue: controller.energyChartValue.value,
-                );
-              } else {
-                // Custom Date Data mode: Show two energy charts
+              if (controller.isDataView.value) {
                 return Column(
                   children: [
-                    EnergyChartCardWidget(
-                      energyValue: controller.energyChartValue.value,
-                    ),
-                    const EnergyChartCardWidget(
-                      energyValue: '5.53 kw',
-                    ),
+                     // Date selection (Today Data / Custom Date Data)
+                    DateSelectionWidget(controller: controller),
+                    
+                    const SizedBox(height: 16),
+                    
+                    // Energy chart(s)
+                    Obx(() {
+                      if (controller.isTodayData.value) {
+                        // Today Data mode: Show single energy chart
+                        return EnergyChartCardWidget(
+                          energyValue: controller.energyChartValue.value,
+                        );
+                      } else {
+                        // Custom Date Data mode: Show two energy charts
+                        return Column(
+                          children: [
+                            EnergyChartCardWidget(
+                              energyValue: controller.energyChartValue.value,
+                            ),
+                            const EnergyChartCardWidget(
+                              energyValue: '5.53 kw',
+                            ),
+                          ],
+                        );
+                      }
+                    }),
                   ],
                 );
+              } else {
+                // Revenue View: Show Collapsible Data & Cost Info
+                return DataCostInfoWidget(controller: controller);
               }
             }),
             

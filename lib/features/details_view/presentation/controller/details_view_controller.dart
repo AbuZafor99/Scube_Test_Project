@@ -12,8 +12,12 @@ class DetailsViewController extends GetxController {
   final Rx<DateTime?> fromDate = Rx<DateTime?>(null);
   final Rx<DateTime?> toDate = Rx<DateTime?>(null);
 
-  // Gauge value
-  final RxDouble gaugeValue = 55.00.obs;
+  // Gauge value (now string to support formatted numbers/placeholders)
+  final RxString gaugeValueStr = '55.00'.obs;
+  final RxString gaugeUnit = 'kWh/Sqft'.obs;
+
+  // Revenue card expanded state
+  final RxBool isRevenueCardExpanded = true.obs;
 
   // Energy chart value
   final RxString energyChartValue = '5.53 kw'.obs;
@@ -21,7 +25,17 @@ class DetailsViewController extends GetxController {
   void toggleView(bool isData) {
     isDataView.value = isData;
     // Update gauge value based on view type
-    gaugeValue.value = isData ? 55.00 : 57.00;
+    if (isData) {
+      gaugeValueStr.value = '55.00';
+      gaugeUnit.value = 'kWh/Sqft';
+    } else {
+      gaugeValueStr.value = '8897455';
+      gaugeUnit.value = 'tk';
+    }
+  }
+
+  void toggleRevenueCard() {
+    isRevenueCardExpanded.value = !isRevenueCardExpanded.value;
   }
 
   void toggleDateMode(bool isToday) {

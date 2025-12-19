@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:scube_task_app/core/common/constants/app_texts.dart';
 import 'package:scube_task_app/core/theme/app_colors.dart';
 
 class CircularGaugeWidget extends StatelessWidget {
-  final double value;
+  final String value;
+  final String unit;
 
   const CircularGaugeWidget({
     super.key,
     required this.value,
+    required this.unit,
   });
 
   @override
@@ -22,15 +23,15 @@ class CircularGaugeWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                value.toStringAsFixed(2),
+                value,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 32,
+                  fontSize: 28, // Reduced slightly to fit larger numbers
                   fontWeight: FontWeight.w700,
                 ),
               ),
               Text(
-                AppTexts.kwhSqft,
+                unit,
                 style: TextStyle(
                   color: Colors.grey[700],
                   fontSize: 14,
@@ -46,7 +47,7 @@ class CircularGaugeWidget extends StatelessWidget {
 }
 
 class _GaugePainter extends CustomPainter {
-  final double value;
+  final String value;
 
   _GaugePainter({required this.value});
 
@@ -57,7 +58,7 @@ class _GaugePainter extends CustomPainter {
 
     // Background arc (light blue)
     final backgroundPaint = Paint()
-      ..color = AppColors.homeTabInactive
+      ..color = const Color(0xFFE1F0FF) // Light blue background track
       ..style = PaintingStyle.stroke
       ..strokeWidth = 25
       ..strokeCap = StrokeCap.round;
@@ -77,16 +78,36 @@ class _GaugePainter extends CustomPainter {
       ..strokeWidth = 25
       ..strokeCap = StrokeCap.round;
 
-    // Calculate progress (assuming value is between 0-100)
-    final progress = (value / 100) * 3.6;
+    // Calculate progress (try to parse double, otherwise default to full or 0)
+    double progressValue = 0.0;
+    try {
+      // Remove any non-numeric characters except dot (simple parsing)
+      String numericString = value.replaceAll(RegExp(r'[^0-9.]'), '');
+      if (numericString.isNotEmpty) {
+        double parsed = double.parse(numericString);
+        // Normalize: if > 100, assume it's a large number and show mostly full/dynamic
+        // For this demo, let's map 0-100 normally, and large numbers to ~75%
+        if (parsed > 100) {
+           progressValue = 75.0; 
+        } else {
+           progressValue = parsed;
+        }
+      }
+    } catch (e) {
+      progressValue = 0.0;
+    }
 
-    canvas.drawArc(
-      Rect.fromCircle(center: center, radius: radius),
-      -2.4, // Start angle
-      progress, // Sweep angle based on value
-      false,
-      foregroundPaint,
-    );
+    final progress = (progressValue / 100) * 3.6;
+
+    if (progress > 0) {
+      canvas.drawArc(
+        Rect.fromCircle(center: center, radius: radius),
+        -2.4, // Start angle
+        progress, // Sweep angle based on value
+        false,
+        foregroundPaint,
+      );
+    }
   }
 
   @override
