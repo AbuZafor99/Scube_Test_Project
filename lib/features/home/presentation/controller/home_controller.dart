@@ -13,11 +13,7 @@ class HomeController extends GetxController {
   }
 
   void onDataViewCardTap(String cardTitle) {
-    Get.snackbar(
-      'Info',
-      '$cardTitle tapped',
-      snackPosition: SnackPosition.BOTTOM,
-    );
+    Get.toNamed('/details-view');
   }
 
   void onActionButtonTap(String buttonName) {
