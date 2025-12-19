@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scube_task_app/core/common/constants/app_texts.dart';
+import 'package:scube_task_app/features/auth/presentation/screens/forgot_password_screen.dart';
+import 'package:scube_task_app/features/auth/presentation/screens/signup_screen.dart';
 import 'package:scube_task_app/features/home/presentation/screens/home_screen.dart';
 
 class LoginController extends GetxController {
@@ -32,7 +34,6 @@ class LoginController extends GetxController {
     if (formKey.currentState?.validate() ?? false) {
       isLoading.value = true;
       
-      
       await Future.delayed(const Duration(seconds: 2));
       
       isLoading.value = false;
@@ -43,18 +44,16 @@ class LoginController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
       
-      // Navigate to home screen
       Get.offAll(() => const HomeScreen());
     }
   }
 
-  // Forgot password
   void forgotPassword() {
-    Get.toNamed('/forgot-password');
+    Get.to(() => const ForgotPasswordScreen());
   }
 
   void registerNow() {
-    Get.toNamed('/signup');
+    Get.to(() => const SignupScreen());
   }
 
   String? validateUsername(String? value) {
@@ -62,7 +61,6 @@ class LoginController extends GetxController {
       return AppTexts.pleaseEnterUsername;
     }
     
-    // Email validation regex
     final emailRegex = RegExp(
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
     );

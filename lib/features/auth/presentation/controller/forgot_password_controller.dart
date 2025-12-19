@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scube_task_app/core/common/constants/app_texts.dart';
 import 'package:scube_task_app/features/auth/presentation/screens/login_screen.dart';
+import 'package:scube_task_app/features/auth/presentation/screens/otp_verification_screen.dart';
+import 'package:scube_task_app/features/auth/presentation/screens/set_new_password_screen.dart';
 
 class ForgotPasswordController extends GetxController {
   final emailController = TextEditingController();
-  final otpController = TextEditingController(); // For 6 digit OTP
+  final otpController = TextEditingController();
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
@@ -29,34 +31,28 @@ class ForgotPasswordController extends GetxController {
   void togglePasswordVisibility() => isPasswordVisible.value = !isPasswordVisible.value;
   void toggleConfirmPasswordVisibility() => isConfirmPasswordVisible.value = !isConfirmPasswordVisible.value;
 
-  // Step 1: Send Request to Email
   Future<void> sendResetLink() async {
     if (formKeyEmail.currentState?.validate() ?? false) {
       isLoading.value = true;
       await Future.delayed(const Duration(seconds: 2));
       isLoading.value = false;
 
-      // Navigate to OTP screen
-      Get.toNamed('/otp-verification'); 
+      Get.to(() => const OtpVerificationScreen()); 
     }
   }
 
-  // Step 2: Verify OTP
   Future<void> verifyOtp() async {
-    // OTP validation logic (e.g., check length)
-    if (otpCode.value.length == 4) { // Assuming 4 digit OTP for simplicity or 6
+    if (otpCode.value.length == 4) {
        isLoading.value = true;
        await Future.delayed(const Duration(seconds: 2));
        isLoading.value = false;
 
-       // Navigate to New Password screen
-       Get.toNamed('/set-new-password');
+       Get.to(() => const SetNewPasswordScreen());
     } else {
       Get.snackbar('Error', 'Please enter a valid OTP code');
     }
   }
 
-  // Step 3: Set New Password
   Future<void> setNewPassword() async {
     if (formKeyReset.currentState?.validate() ?? false) {
       isLoading.value = true;
@@ -69,7 +65,6 @@ class ForgotPasswordController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
 
-      // Navigate back to Login
       Get.offAll(() => const LoginScreen());
     }
   }

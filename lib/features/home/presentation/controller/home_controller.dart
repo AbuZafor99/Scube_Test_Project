@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:scube_task_app/features/dashboard/presentation/screens/dashboard_screen.dart';
+import 'package:scube_task_app/features/details_view/presentation/screens/details_view_screen.dart';
 
 class HomeController extends GetxController {
   final RxInt selectedTabIndex = 0.obs;
@@ -13,10 +15,10 @@ class HomeController extends GetxController {
   }
 
   void onDataViewCardTap(String cardTitle) {
-    Get.toNamed('/details-view');
+    Get.to(() => const DetailsViewScreen());
   }
 
   void onActionButtonTap(String buttonName) {
-    Get.toNamed('/dashboard');
+    Get.to(() => const DashboardScreen());
   }
 }

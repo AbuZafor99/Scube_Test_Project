@@ -36,7 +36,6 @@ class SignupController extends GetxController {
     if (formKey.currentState?.validate() ?? false) {
       isLoading.value = true;
 
-      // Simulate API call
       await Future.delayed(const Duration(seconds: 2));
 
       isLoading.value = false;
@@ -47,13 +46,12 @@ class SignupController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
 
-      // Navigate to home screen
       Get.offAll(() => const HomeScreen());
     }
   }
 
   void loginNow() {
-    Get.back(); // Return to Login Screen
+    Get.back();
   }
 
   String? validateName(String? value) {
@@ -65,7 +63,7 @@ class SignupController extends GetxController {
 
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return AppTexts.pleaseEnterUsername; // Reuse "Please enter username/email"
+      return AppTexts.pleaseEnterUsername;
     }
 
     final emailRegex = RegExp(

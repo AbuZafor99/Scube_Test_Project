@@ -68,7 +68,8 @@ class HomeScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 16),
             
-            // Main white card containing tabs, electricity, and data cards
+            const SizedBox(height: 16),
+            
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
@@ -78,13 +79,11 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  // Tab bar
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(8),
                     child: HomeTabBarWidget(controller: controller),
                   ),
                   
-                  // Divider
                   Divider(
                     height: 1,
                     thickness: 1,
@@ -93,7 +92,6 @@ class HomeScreen extends StatelessWidget {
                   
                   const SizedBox(height: 12),
                   
-                  // Electricity title
                   Text(
                     AppTexts.electricity,
                     style: TextStyle(
@@ -105,12 +103,10 @@ class HomeScreen extends StatelessWidget {
                   
                   const SizedBox(height: 12),
                   
-                  // Circular power display
                   const CircularPowerDisplayWidget(),
                   
                   const SizedBox(height: 16),
                   
-                  // Source/Load toggle buttons
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Obx(() => Row(
@@ -136,16 +132,14 @@ class HomeScreen extends StatelessWidget {
                   
                   const SizedBox(height: 16),
                   
-                  // Divider
                   Divider(
                     height: 1,
                     thickness: 1,
                     color: AppColors.homeCardBorder,
                   ),
                   
-                  // Scrollable data view cards section with fixed height
                   SizedBox(
-                    height: 280,
+                    height: 290,
                     child: Scrollbar(
                       thickness: 6,
                       radius: const Radius.circular(3),
@@ -154,14 +148,14 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           DataViewCardWidget(
                             iconPath: 'assets/icons/icon1.png',
-                            iconBackground: Colors.transparent, // Icons have their own colors
+                            iconBackground: Colors.transparent, 
                             title: AppTexts.dataView,
                             status: AppTexts.active,
-                            isActive: true, // Active status
+                            isActive: true, 
                             data1Value: '55505.63',
                             data2Value: '58805.63',
-                            backgroundColor: const Color(0xFFE1F0FF), // Light Blue
-                            statusColor: const Color(0xFF0099FF), // Blue
+                            backgroundColor: const Color(0xFFE1F0FF), 
+                            statusColor: const Color(0xFF0099FF), 
                             onTap: () => controller.onDataViewCardTap(AppTexts.dataView),
                           ),
                           DataViewCardWidget(
@@ -172,8 +166,8 @@ class HomeScreen extends StatelessWidget {
                             isActive: true, 
                             data1Value: '55505.63',
                             data2Value: '58805.63',
-                            backgroundColor: const Color(0xFFFFF4DE), // Light Orange/Yellow
-                            statusColor: const Color(0xFFFF9E00), // Orange
+                            backgroundColor: const Color(0xFFFFF4DE), 
+                            statusColor: const Color(0xFFFF9E00), 
                             onTap: () => controller.onDataViewCardTap(AppTexts.dataType2),
                           ),
                           DataViewCardWidget(
@@ -184,8 +178,8 @@ class HomeScreen extends StatelessWidget {
                             isActive: false,
                             data1Value: '55505.63',
                             data2Value: '58805.63',
-                            backgroundColor: const Color(0xFFE1F0FF), // Light Blue
-                            statusColor: Colors.red, // Inactive Red
+                            backgroundColor: const Color(0xFFE1F0FF), 
+                            statusColor: Colors.red, 
                             onTap: () => controller.onDataViewCardTap(AppTexts.dataType3),
                           ),
                         ],
@@ -198,7 +192,6 @@ class HomeScreen extends StatelessWidget {
             
             const SizedBox(height: 20),
             
-            // Action buttons grid (outside the card)
             ActionButtonsGridWidget(
               onButtonTap: controller.onActionButtonTap,
             ),
