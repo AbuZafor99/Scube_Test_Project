@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scube_task_app/features/auth/presentation/screens/login_screen.dart';
+import 'package:scube_task_app/features/details_view/presentation/screens/details_view_screen.dart';
 
 import 'core/theme/app_theme.dart';
 
@@ -19,7 +20,9 @@ class MyApp extends StatelessWidget {
       title: 'ScubeApp',
       theme: AppTheme.light,
       home: LoginScreen(),
-      
+      getPages: [
+        GetPage(name: '/details-view', page: () => const DetailsViewScreen()),
+      ],
     );
   }
 }

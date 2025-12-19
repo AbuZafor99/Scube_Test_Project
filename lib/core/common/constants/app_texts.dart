@@ -51,5 +51,20 @@ class AppTexts {
   static const String naturalGas = 'Natural Gas';
   static const String dGenerator = 'D. Generator';
   static const String waterProcess = 'Water Process';
+
+  // Details View Screen
+  static const String revenueView = 'Revenue View';
+  static const String todayData = 'Today Data';
+  static const String customDateData = 'Custom Date Data';
+  static const String fromDate = 'From Date';
+  static const String toDate = 'To Date';
+  static const String search = 'Search';
+  static const String energyChart = 'Energy Chart';
+  static const String kwhSqft = 'kWh/Sqft';
+  static const String dataA = 'Data A';
+  static const String dataB = 'Data B';
+  static const String dataC = 'Data C';
+  static const String dataD = 'Data D';
+  static const String cost = 'Cost';
 }
 

@@ -48,4 +48,11 @@ class AppColors {
   static const Color homeIconYellow = Color(0xFFFFC107);
   static const Color homeIconRed = Color(0xFFF44336);
   //! <--- Home Screen Close --->
+
+  //! <--- Details View Colors --->
+  static const Color dataIndicatorA = Color(0xFF2196F3); // Blue
+  static const Color dataIndicatorB = Color(0xFF00BCD4); // Cyan
+  static const Color dataIndicatorC = Color(0xFF9C27B0); // Purple
+  static const Color dataIndicatorD = Color(0xFFFF9800); // Orange
+  //! <--- Details View Close --->
 }
