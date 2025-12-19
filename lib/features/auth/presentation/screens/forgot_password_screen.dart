@@ -28,48 +28,50 @@ class ForgotPasswordScreen extends StatelessWidget {
                   topRight: Radius.circular(30),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Form(
-                  key: controller.formKeyEmail,
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 32),
-                      const Text(
-                        AppTexts.forgotPassword,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Form(
+                    key: controller.formKeyEmail,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 32),
+                        const Text(
+                          AppTexts.forgotPassword,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Enter your email address to receive a verification code',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
-                      ),
-                      const SizedBox(height: 32),
-                      
-                      TextFormField(
-                        controller: controller.emailController,
-                        validator: controller.validateEmail,
-                        decoration: _buildInputDecoration('Email Address'),
-                        style: const TextStyle(color: Colors.black),
-                      ),
-                      
-                      const SizedBox(height: 32),
-                      
-                      Obx(() => PrimaryButton(
-                        onPressed: controller.sendResetLink,
-                        text: 'Send Code',
-                        isLoading: controller.isLoading.value,
-                        backgroundColor: const Color(0xFF00A8E8),
-                        textColor: Colors.white,
-                        height: 52,
-                        borderRadius: 8,
-                      )),
-                    ],
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Enter your email address to receive a verification code',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.grey, fontSize: 14),
+                        ),
+                        const SizedBox(height: 32),
+                        
+                        TextFormField(
+                          controller: controller.emailController,
+                          validator: controller.validateEmail,
+                          decoration: _buildInputDecoration('Email Address'),
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                        
+                        const SizedBox(height: 32),
+                        
+                        Obx(() => PrimaryButton(
+                          onPressed: controller.sendResetLink,
+                          text: 'Send Code',
+                          isLoading: controller.isLoading.value,
+                          backgroundColor: const Color(0xFF00A8E8),
+                          textColor: Colors.white,
+                          height: 52,
+                          borderRadius: 8,
+                        )),
+                      ],
+                    ),
                   ),
                 ),
               ),

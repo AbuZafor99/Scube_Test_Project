@@ -62,7 +62,9 @@ class DashboardScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: AppColors.homeCardBorder, width: 2),
         ),
-        child: const EmptyStateWidget(),
+        child: const SingleChildScrollView(
+          child: EmptyStateWidget(),
+        ),
       ),
     );
   }
