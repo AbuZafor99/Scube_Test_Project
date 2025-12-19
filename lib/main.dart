@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scube_task_app/features/auth/presentation/screens/login_screen.dart';
-
 import 'core/theme/app_theme.dart';
 
 
