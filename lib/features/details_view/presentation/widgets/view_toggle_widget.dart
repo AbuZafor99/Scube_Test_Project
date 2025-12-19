@@ -16,10 +16,10 @@ class ViewToggleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      padding: const EdgeInsets.all(4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.homeCardBorder, width: 2),
       ),
       child: Row(
@@ -31,6 +31,7 @@ class ViewToggleWidget extends StatelessWidget {
               () => controller.toggleView(true),
             ),
           ),
+          Container(width: 1, height: 24, color: Colors.transparent), // Separation spacer if needed
           Expanded(
             child: _buildToggleOption(
               AppTexts.revenueView,
@@ -47,17 +48,15 @@ class ViewToggleWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.transparent : Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
-        ),
+        color: Colors.transparent, // Hit test area
+        padding: const EdgeInsets.symmetric(vertical: 12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Radio button circle
             Container(
-              width: 16,
-              height: 16,
+              width: 18,
+              height: 18,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
@@ -68,8 +67,8 @@ class ViewToggleWidget extends StatelessWidget {
               child: isSelected
                   ? Center(
                       child: Container(
-                        width: 8,
-                        height: 8,
+                        width: 10,
+                        height: 10,
                         decoration: const BoxDecoration(
                           color: AppColors.homeTabActive,
                           shape: BoxShape.circle,
@@ -83,7 +82,7 @@ class ViewToggleWidget extends StatelessWidget {
               title,
               style: TextStyle(
                 color: isSelected ? AppColors.homeTabActive : Colors.grey[600],
-                fontSize: 14,
+                fontSize: 15,
                 fontWeight: FontWeight.w600,
               ),
             ),
