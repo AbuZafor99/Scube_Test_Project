@@ -147,43 +147,45 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: 280,
                     child: Scrollbar(
-                      thumbVisibility: true,
                       thickness: 6,
                       radius: const Radius.circular(3),
                       child: ListView(
                         padding: const EdgeInsets.all(16),
                         children: [
                           DataViewCardWidget(
-                            icon: Icons.solar_power,
-                            iconColor: Colors.white,
-                            iconBackground: AppColors.homeIconBlue,
+                            iconPath: 'assets/icons/icon1.png',
+                            iconBackground: Colors.transparent, // Icons have their own colors
                             title: AppTexts.dataView,
                             status: AppTexts.active,
-                            isActive: true,
+                            isActive: true, // Active status
                             data1Value: '55505.63',
                             data2Value: '58805.63',
+                            backgroundColor: const Color(0xFFE1F0FF), // Light Blue
+                            statusColor: const Color(0xFF0099FF), // Blue
                             onTap: () => controller.onDataViewCardTap(AppTexts.dataView),
                           ),
                           DataViewCardWidget(
-                            icon: Icons.battery_charging_full,
-                            iconColor: Colors.white,
-                            iconBackground: AppColors.homeIconOrange,
+                            iconPath: 'assets/icons/icon2.png',
+                            iconBackground: Colors.transparent,
                             title: AppTexts.dataType2,
                             status: AppTexts.active,
-                            isActive: true,
+                            isActive: true, 
                             data1Value: '55505.63',
                             data2Value: '58805.63',
+                            backgroundColor: const Color(0xFFFFF4DE), // Light Orange/Yellow
+                            statusColor: const Color(0xFFFF9E00), // Orange
                             onTap: () => controller.onDataViewCardTap(AppTexts.dataType2),
                           ),
                           DataViewCardWidget(
-                            icon: Icons.electrical_services,
-                            iconColor: Colors.white,
-                            iconBackground: AppColors.homeIconBlue,
+                            iconPath: 'assets/icons/icon3.png',
+                            iconBackground: Colors.transparent,
                             title: AppTexts.dataType3,
                             status: AppTexts.inactive,
                             isActive: false,
                             data1Value: '55505.63',
                             data2Value: '58805.63',
+                            backgroundColor: const Color(0xFFE1F0FF), // Light Blue
+                            statusColor: Colors.red, // Inactive Red
                             onTap: () => controller.onDataViewCardTap(AppTexts.dataType3),
                           ),
                         ],

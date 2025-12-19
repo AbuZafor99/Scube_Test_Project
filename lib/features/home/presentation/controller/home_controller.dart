@@ -17,10 +17,6 @@ class HomeController extends GetxController {
   }
 
   void onActionButtonTap(String buttonName) {
-    Get.snackbar(
-      'Info',
-      '$buttonName tapped',
-      snackPosition: SnackPosition.BOTTOM,
-    );
+    Get.toNamed('/dashboard');
   }
 }

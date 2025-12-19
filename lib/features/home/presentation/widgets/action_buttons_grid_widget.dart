@@ -23,32 +23,32 @@ class ActionButtonsGridWidget extends StatelessWidget {
         childAspectRatio: 2.5,
         children: [
           _buildActionButton(
-            '📊',
+            'assets/icons/chart_490605.png',
             AppTexts.analysisPro,
             () => onButtonTap(AppTexts.analysisPro),
           ),
           _buildActionButton(
-            '⚡',
+            'assets/icons/generator_8789846.png',
             AppTexts.gGenerator,
             () => onButtonTap(AppTexts.gGenerator),
           ),
           _buildActionButton(
-            '🔌',
+            'assets/icons/power_15679163 1.png',
             AppTexts.plantSummery,
             () => onButtonTap(AppTexts.plantSummery),
           ),
           _buildActionButton(
-            '🔥',
+            'assets/icons/fire_3900509 1.png',
             AppTexts.naturalGas,
             () => onButtonTap(AppTexts.naturalGas),
           ),
           _buildActionButton(
-            '🔋',
+            'assets/icons/generator_8789846 (1).png',
             AppTexts.dGenerator,
             () => onButtonTap(AppTexts.dGenerator),
           ),
           _buildActionButton(
-            '💧',
+            'assets/icons/faucet_1078798.png',
             AppTexts.waterProcess,
             () => onButtonTap(AppTexts.waterProcess),
           ),
@@ -57,7 +57,7 @@ class ActionButtonsGridWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButton(String emoji, String title, VoidCallback onTap) {
+  Widget _buildActionButton(String imagePath, String title, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -69,11 +69,13 @@ class ActionButtonsGridWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Text(
-              emoji,
-              style: const TextStyle(fontSize: 20),
+            Image.asset(
+              imagePath,
+              width: 24,
+              height: 24,
+              errorBuilder: (context, error, stackTrace) => const Icon(Icons.error, size: 24),
             ),
-            const SizedBox(width: 6),
+            const SizedBox(width: 8),
             Expanded(
               child: Text(
                 title,
