@@ -1,5 +1,7 @@
 class AppImages {
   static const String appLogo = 'assets/images/logo.png';
+
+  static const String dashboadrdImage = 'assets/images/dashboard_image.png';
   
   static const String googleLogo = 'assets/images/google_logo.png';
   static const String entireScreen = 'assets/images/EntireScreenlogo.png';

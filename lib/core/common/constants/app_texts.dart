@@ -66,5 +66,8 @@ class AppTexts {
   static const String dataC = 'Data C';
   static const String dataD = 'Data D';
   static const String cost = 'Cost';
+
+  // Dashboard Screen
+  static const String dashboardText = 'No data is here, please wait.';
 }
 
